@@ -1,0 +1,75 @@
+body, html {
+ margin: 0; padding: 0;
+}
+
+html {font-size: 90%}
+
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #884AC3;;
+  color: #fff;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  min-height: 100vh
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-size: 0.8rem;
+  margin: 0; padding: 0;
+  line-height: 1;
+  font-weight: normal;
+}
+
+main {
+}
+
+canvas {
+  mix-blend-mode: difference;
+  filter: invert(100%)
+}
+
+footer {
+  color: #fff;
+  mix-blend-mode: difference;
+}
+
+input {
+  border: 0; appearance: none;
+  font-size: 0.9rem;
+}
+
+main {
+  width: 20vmax;
+}
+
+img {width: 100%; vertical-align: middle}
+
+div {font-size: 1rem}
+
+main, footer {align-self: flex-end}
+sub {font-size: 0.7rem}
+.small-logo {width: 4rem}
+
+
+form {
+  width: 100%;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  height: 2.5rem;
+}
+
+.x1 {flex: 1}
+input[type='email'] {
+  flex: 1;
+  background-color: rgba(0,0,0,0);
+  color: #fff;
+  padding: 0.5rem;
+  border-right: 1px solid #fff;
+}
+input[type='submit'] {
+  background-color: rgba(0,0,0,0);
+  border: 0;
+  color: #fff
+}
+form {margin-bottom: 0}
