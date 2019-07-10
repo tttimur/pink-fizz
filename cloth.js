@@ -92,21 +92,21 @@ Particle.prototype.bindToBottom = function () {
   this.position.copy(this.original)
   this.previous.copy(this.original) 
 
-	this.position.multiplyScalar(3)
-  this.previous.multiplyScalar(3)
+	this.position.multiplyScalar(4)
+  this.previous.multiplyScalar(4)
   this.position.z = 100
   this.previous.z = 100
 
-  this.position.y = -700
-  this.previous.y = -700
+  this.position.y = -900
+  this.previous.y = -900
 }
 
 Particle.prototype.lockToOriginal = function (increase) {
 	this.position.copy(this.original)
 	this.previous.copy(this.original)
 
-  this.position.multiplyScalar(3)
-  this.previous.multiplyScalar(3)
+  this.position.multiplyScalar(4)
+  this.previous.multiplyScalar(4)
 
   this.position.z = -100
   this.previous.z = -100

@@ -271,7 +271,7 @@
 .dev > * > * {outline:1px solid #51feff}
 .dev > * > * > * {outline:1px solid #ff0000}
 .dev > * > * > * * {outline:1px solid #00ff00}
-@media (max-width:768px) {
+@media (max-width:1000px) {
 [sm~="c1"]{width:8.33333%}
 [sm~="c2"]{width:16.66667%}
 [sm~="c3"]{width:25%}

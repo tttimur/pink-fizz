@@ -1,12 +1,55 @@
 body, html {
  margin: 0; padding: 0;
 }
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('NHaasGroteskDSStd-55Rg.0b8264b1.woff2') format('woff2'),
+        url('NHaasGroteskDSStd-55Rg.94c27024.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('NHaasGroteskDSStd-66MdIt.312c4f35.woff2') format('woff2'),
+        url('NHaasGroteskDSStd-66MdIt.62ea3588.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('NHaasGroteskDSStd-65Md.da0e275e.woff2') format('woff2'),
+        url('NHaasGroteskDSStd-65Md.3569ce93.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('NHaasGroteskDSStd-56It.9f084eb8.woff2') format('woff2'),
+        url('NHaasGroteskDSStd-56It.a0302bea.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
 
 html {font-size: 90%}
+@media (max-width: 1500px) {
+  html {font-size: 80%}
+}
+@media (max-width: 1200px) {
+  html{font-size: 75%}
+}
+@media (max-width: 1000px) {
+  html{font-size: 80%}
+}
+
 
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  background-color: #884AC3;;
+  font-family: 'NeueHaasGroteskDisp Std', 'Helvetica Neue', sans-serif;
+  background-color: #b693a9;
   color: #fff;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -25,14 +68,15 @@ main {
 }
 
 canvas {
-  mix-blend-mode: difference;
-  -webkit-filter: invert(100%);
-          filter: invert(100%)
+  opacity: 0;
+  -webkit-transition: 0.8s ease-out opacity;
+  transition: 0.8s ease-out opacity;
 }
+
+canvas.active {opacity: 1}
 
 footer {
   color: #fff;
-  mix-blend-mode: difference;
 }
 
 input {
@@ -40,9 +84,12 @@ input {
   font-size: 0.9rem;
 }
 
-main {
-  width: 20vmax;
+main  {
+  width: 100%;
+  text-align: center;
 }
+
+main img {width: 20vmax; margin-left: auto; margin-right: auto}
 
 img {width: 100%; vertical-align: middle}
 
@@ -50,13 +97,14 @@ div {font-size: 1rem}
 
 main, footer {align-self: flex-end}
 sub {font-size: 0.7rem}
-.small-logo {width: 4rem}
+.pink-logo {width: 4rem}
 
 
 form {
   width: 100%;
   border: 1px solid #fff;
   border-radius: 0.5rem;
+  padding-left: 0.5rem;
   height: 2.5rem;
 }
 
@@ -69,12 +117,59 @@ input[type='email'] {
   padding: 0.5rem;
   border-right: 1px solid #fff;
 }
+input[type='email']:active, input[type='email']:focus {
+    outline: none;
+  }
+input[type='email']::-webkit-input-placeholder {
+  color: #fff
+}
+input[type='email']::-moz-placeholder {
+  color: #fff
+}
+input[type='email']:-ms-input-placeholder {
+  color: #fff
+}
+input[type='email']::-ms-input-placeholder {
+  color: #fff
+}
+input[type='email']::placeholder {
+  color: #fff
+}
 input[type='submit'] {
   background-color: rgba(0,0,0,0);
   border: 0;
-  color: #fff
+  color: #fff;
+  cursor: pointer;
 }
+input[type='submit']:hover { font-style: italic;}
+input[type='submit']:active, input[type='submit']:focus {outline: none}
 form {margin-bottom: 0}
+#privacy-policy {
+  background-color: rgba(0,0,0,0.6);
+  z-index: 9999;
+  height: 100vh;
+  width: 100%;
+  padding-bottom: 4rem;
+  overflow: scroll;
+  display: none;
+}
+#privacy-policy.active {display: block}
+
+#pp-content {
+ max-width: 30rem;
+  padding: 2rem;
+  padding-bottom: 4.5rem;
+}
+#pp-content p {line-height: 1.4}
+
+.copy-email span {
+  opacity: 0;
+}
+.copy-email.copied {
+  color: rgba(0,0,0,0);
+}
+.copy-email.copied span {opacity: 1; color: #fff}
+
 
 
 /*# sourceMappingURL=/pink-fizz.9ad09f98.css.map */

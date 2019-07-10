@@ -1,12 +1,55 @@
 body, html {
  margin: 0; padding: 0;
 }
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('assets/NHaasGroteskDSStd-55Rg.woff2') format('woff2'),
+        url('assets/NHaasGroteskDSStd-55Rg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('assets/NHaasGroteskDSStd-66MdIt.woff2') format('woff2'),
+        url('assets/NHaasGroteskDSStd-66MdIt.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('assets/NHaasGroteskDSStd-65Md.woff2') format('woff2'),
+        url('assets/NHaasGroteskDSStd-65Md.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NeueHaasGroteskDisp Std';
+    src: url('assets/NHaasGroteskDSStd-56It.woff2') format('woff2'),
+        url('assets/NHaasGroteskDSStd-56It.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
 
 html {font-size: 90%}
+@media (max-width: 1500px) {
+  html {font-size: 80%}
+}
+@media (max-width: 1200px) {
+  html{font-size: 75%}
+}
+@media (max-width: 1000px) {
+  html{font-size: 80%}
+}
+
 
 body {
-  font-family: 'Helvetica Neue', sans-serif;
-  background-color: #884AC3;;
+  font-family: 'NeueHaasGroteskDisp Std', 'Helvetica Neue', sans-serif;
+  background-color: #b693a9;
   color: #fff;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -25,13 +68,14 @@ main {
 }
 
 canvas {
-  mix-blend-mode: difference;
-  filter: invert(100%)
+  opacity: 0;
+  transition: 0.8s ease-out opacity;
+
+  &.active {opacity: 1}
 }
 
 footer {
   color: #fff;
-  mix-blend-mode: difference;
 }
 
 input {
@@ -39,8 +83,10 @@ input {
   font-size: 0.9rem;
 }
 
-main {
-  width: 20vmax;
+main  {
+  width: 100%;
+  text-align: center;
+  & img {width: 20vmax; margin-left: auto; margin-right: auto}
 }
 
 img {width: 100%; vertical-align: middle}
@@ -49,13 +95,14 @@ div {font-size: 1rem}
 
 main, footer {align-self: flex-end}
 sub {font-size: 0.7rem}
-.small-logo {width: 4rem}
+.pink-logo {width: 4rem}
 
 
 form {
   width: 100%;
   border: 1px solid #fff;
   border-radius: 0.5rem;
+  padding-left: 0.5rem;
   height: 2.5rem;
 }
 
@@ -66,10 +113,47 @@ input[type='email'] {
   color: #fff;
   padding: 0.5rem;
   border-right: 1px solid #fff;
+
+  &:active, &:focus {
+    outline: none;
+  }
+}
+input[type='email']::placeholder {
+  color: #fff
 }
 input[type='submit'] {
   background-color: rgba(0,0,0,0);
   border: 0;
-  color: #fff
+  color: #fff;
+  cursor: pointer;
+
+  &:hover { font-style: italic;}
+  &:active, &:focus {outline: none}
 }
 form {margin-bottom: 0}
+#privacy-policy {
+  background-color: rgba(0,0,0,0.6);
+  z-index: 9999;
+  height: 100vh;
+  width: 100%;
+  padding-bottom: 4rem;
+  overflow: scroll;
+  display: none;
+}
+#privacy-policy.active {display: block}
+
+#pp-content {
+ max-width: 30rem;
+  padding: 2rem;
+  padding-bottom: 4.5rem;
+}
+#pp-content p {line-height: 1.4}
+
+.copy-email span {
+  opacity: 0;
+}
+.copy-email.copied {
+  color: rgba(0,0,0,0);
+  & span {opacity: 1; color: #fff}
+}
+

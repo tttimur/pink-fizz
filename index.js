@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import { clothFunction, cloth, windForce, simulate } from './cloth'
 
+let x
 //var textureImg = require('./tile3x.jpg')
 //var OrbitControls = require('three-orbit-controls')(THREE)
 const container = document.getElementById('moon')
@@ -91,36 +92,23 @@ var helper = new THREE.HemisphereLightHelper( light, 5 );
 
     this.pinsFormation.push(this.pins)
 
-    this.clothMaterial = new THREE.MeshStandardMaterial({
+
+    this.materials = []
+    this.selectedMaterial = 1
+    this.materials[0] = new THREE.MeshNormalMaterial({ side: THREE.BackSide })
+    this.materials[1] = new THREE.MeshStandardMaterial({
       color: 0xf18fca,
-      //roughness: 0.5, 
-      //metalness: 0.1,
       side: THREE.BackSide
     })
     
-
- //   this.clothMaterial.color.convertSRGBToLinear()
+    this.clothMaterial = this.materials[1]
+    this.clothMaterial.color.convertSRGBToLinear()
 
     this.clothGeometry = new THREE.ParametricBufferGeometry(clothFunction, cloth.w, cloth.h)
 
     this.clothMesh = new THREE.Mesh(this.clothGeometry, this.clothMaterial)
     this.clothMesh.position.set(20, 0, 0)
-    //    this.clothMesh.ex = 0.8
-    // this.clothMesh.rotation.x = 2
-    // this.clothMesh.rotation.y = 1.6
-
-    // this.camera.lookAt(this.clothMesh.position)
-
-    //    this.clothMesh.castShadow = true
-    //    this.clothMesh.receiveShadow = true
     this.scene.add(this.clothMesh)
-
-    // this.clothMesh.customDepthMaterial = new THREE.MeshDepthMaterial({
-    //   depthPacking: THREE.RGBADepthPacking,
-    //   map: this.clothTexture,
-    //   alphaTest: 0.5
-    // })
-
   }
 
   setupSphere() {
@@ -131,9 +119,18 @@ var helper = new THREE.HemisphereLightHelper( light, 5 );
     this.scene.add(this.sphere)
   }
 
+  toggleMaterial () {
+    if (this.selectedMaterial === 1) {
+      this.clothMesh.material = this.materials[0]
+      this.selectedMaterial = 0
+    } else {
+      this.clothMesh.material = this.materials[1]
+      this.selectedMaterial = 1
+    }
+  }
+
   setupEventListeners() {
     let that = this
-
 
     window.addEventListener('resize', e => {
       this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -208,24 +205,22 @@ var helper = new THREE.HemisphereLightHelper( light, 5 );
     this.clothGeometry.verticesNeedUpdate = true
     //    this.clothGeometry.computeFaceNormals()
     this.clothGeometry.computeVertexNormals()
-
-
     //   this.clothMesh.rotation.y = this.mousex * 2 
-
-
     // this.controls.update()
     this.renderer.render(this.scene, this.camera)
   }
 }
 
+const mainLogo = document.querySelector('.main-logo')
+
 function setupMoon() {
-  const x = new Moon()
+  x = new Moon()
   x.init()
   render()
 
   setTimeout(() => {
     document.querySelector('canvas').classList.add('active')
-  }, 1100)
+  }, 2000)
 
   function render() {
     window.requestAnimationFrame(render)
@@ -237,6 +232,53 @@ function setupMoon() {
   }
 }
 
-setupMoon()
+var pp = document.getElementById('privacy-policy')
+var pplink = document.querySelectorAll('.toggle-pp')
+var copyEmail = document.querySelectorAll('.copy-email')
 
+function setupEmailCopy (el) {
+  var email = el.innerText
+  var input = document.createElement('input')
+  input.value = email.toLowerCase() 
+
+  var label = document.createElement('span')
+  label.className = 'psa t0 l0 c12'
+  label.style.width = '1000px'
+  label.style.pointerEvents = 'none'
+  label.innerText = 'Copied'
+
+  input.className = 'cccopy-email psa t0 '
+  input.style.left = '-99999px'
+
+  el.style.position = 'relative'
+  el.appendChild(input)
+  el.appendChild(label)
+
+  el.addEventListener('click', () => {
+    input.select()
+    document.execCommand('copy')
+
+    el.classList.add('copied')
+    setTimeout(() => {
+      el.classList.remove('copied')
+    }, 1000)
+  })
+}
+
+copyEmail.forEach(el => setupEmailCopy(el))
+
+function togglePrivacyPolicy () {
+  pp.classList.toggle('active')
+}
+
+function attachPpEvents () {
+  pplink.forEach(el => el.addEventListener('click', togglePrivacyPolicy))
+}
+
+setupMoon()
+attachPpEvents()
+
+mainLogo.addEventListener('click', () => {
+  x.toggleMaterial()
+})
 

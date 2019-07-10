@@ -33899,19 +33899,19 @@ Particle.prototype.addForce = function (force) {
 Particle.prototype.bindToBottom = function () {
   this.position.copy(this.original);
   this.previous.copy(this.original);
-  this.position.multiplyScalar(3);
-  this.previous.multiplyScalar(3);
+  this.position.multiplyScalar(4);
+  this.previous.multiplyScalar(4);
   this.position.z = 100;
   this.previous.z = 100;
-  this.position.y = -700;
-  this.previous.y = -700;
+  this.position.y = -900;
+  this.previous.y = -900;
 };
 
 Particle.prototype.lockToOriginal = function (increase) {
   this.position.copy(this.original);
   this.previous.copy(this.original);
-  this.position.multiplyScalar(3);
-  this.previous.multiplyScalar(3);
+  this.position.multiplyScalar(4);
+  this.previous.multiplyScalar(4);
   this.position.z = -100;
   this.previous.z = -100; //  this.position.multiplyScalar(1)
   //  this.previous.multiplyScalar(1)
@@ -34157,8 +34157,9 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-//var textureImg = require('./tile3x.jpg')
+var x; //var textureImg = require('./tile3x.jpg')
 //var OrbitControls = require('three-orbit-controls')(THREE)
+
 var container = document.getElementById('moon');
 
 var Moon =
@@ -34246,27 +34247,21 @@ function () {
       this.pinsFormation = [];
       this.pins = [1];
       this.pinsFormation.push(this.pins);
-      this.clothMaterial = new THREE.MeshStandardMaterial({
-        color: 0xf18fca,
-        //roughness: 0.5, 
-        //metalness: 0.1,
+      this.materials = [];
+      this.selectedMaterial = 1;
+      this.materials[0] = new THREE.MeshNormalMaterial({
         side: THREE.BackSide
-      }); //   this.clothMaterial.color.convertSRGBToLinear()
-
+      });
+      this.materials[1] = new THREE.MeshStandardMaterial({
+        color: 0xf18fca,
+        side: THREE.BackSide
+      });
+      this.clothMaterial = this.materials[1];
+      this.clothMaterial.color.convertSRGBToLinear();
       this.clothGeometry = new THREE.ParametricBufferGeometry(_cloth.clothFunction, _cloth.cloth.w, _cloth.cloth.h);
       this.clothMesh = new THREE.Mesh(this.clothGeometry, this.clothMaterial);
-      this.clothMesh.position.set(20, 0, 0); //    this.clothMesh.ex = 0.8
-      // this.clothMesh.rotation.x = 2
-      // this.clothMesh.rotation.y = 1.6
-      // this.camera.lookAt(this.clothMesh.position)
-      //    this.clothMesh.castShadow = true
-      //    this.clothMesh.receiveShadow = true
-
-      this.scene.add(this.clothMesh); // this.clothMesh.customDepthMaterial = new THREE.MeshDepthMaterial({
-      //   depthPacking: THREE.RGBADepthPacking,
-      //   map: this.clothTexture,
-      //   alphaTest: 0.5
-      // })
+      this.clothMesh.position.set(20, 0, 0);
+      this.scene.add(this.clothMesh);
     }
   }, {
     key: "setupSphere",
@@ -34278,6 +34273,17 @@ function () {
       var sphere = new THREE.Mesh(geo, mat);
       this.sphere = sphere;
       this.scene.add(this.sphere);
+    }
+  }, {
+    key: "toggleMaterial",
+    value: function toggleMaterial() {
+      if (this.selectedMaterial === 1) {
+        this.clothMesh.material = this.materials[0];
+        this.selectedMaterial = 0;
+      } else {
+        this.clothMesh.material = this.materials[1];
+        this.selectedMaterial = 1;
+      }
     }
   }, {
     key: "setupEventListeners",
@@ -34370,13 +34376,15 @@ function () {
   return Moon;
 }();
 
+var mainLogo = document.querySelector('.main-logo');
+
 function setupMoon() {
-  var x = new Moon();
+  x = new Moon();
   x.init();
   render();
   setTimeout(function () {
     document.querySelector('canvas').classList.add('active');
-  }, 1100);
+  }, 2000);
 
   function render() {
     window.requestAnimationFrame(render);
@@ -34388,7 +34396,53 @@ function setupMoon() {
   };
 }
 
+var pp = document.getElementById('privacy-policy');
+var pplink = document.querySelectorAll('.toggle-pp');
+var copyEmail = document.querySelectorAll('.copy-email');
+
+function setupEmailCopy(el) {
+  var email = el.innerText;
+  var input = document.createElement('input');
+  input.value = email.toLowerCase();
+  var label = document.createElement('span');
+  label.className = 'psa t0 l0 c12';
+  label.style.width = '1000px';
+  label.style.pointerEvents = 'none';
+  label.innerText = 'Copied';
+  input.className = 'cccopy-email psa t0 ';
+  input.style.left = '-99999px';
+  el.style.position = 'relative';
+  el.appendChild(input);
+  el.appendChild(label);
+  el.addEventListener('click', function () {
+    input.select();
+    document.execCommand('copy');
+    el.classList.add('copied');
+    setTimeout(function () {
+      el.classList.remove('copied');
+    }, 1000);
+  });
+}
+
+copyEmail.forEach(function (el) {
+  return setupEmailCopy(el);
+});
+
+function togglePrivacyPolicy() {
+  pp.classList.toggle('active');
+}
+
+function attachPpEvents() {
+  pplink.forEach(function (el) {
+    return el.addEventListener('click', togglePrivacyPolicy);
+  });
+}
+
 setupMoon();
+attachPpEvents();
+mainLogo.addEventListener('click', function () {
+  x.toggleMaterial();
+});
 },{"three":"node_modules/three/build/three.module.js","./cloth":"cloth.js"}],"../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -34417,7 +34471,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60259" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59078" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
