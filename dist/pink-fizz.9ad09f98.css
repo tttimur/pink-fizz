@@ -46,7 +46,6 @@ html {font-size: 90%}
   html{font-size: 80%}
 }
 
-
 body {
   font-family: 'NeueHaasGroteskDisp Std', 'Helvetica Neue', sans-serif;
   background-color: #b693a9;
@@ -96,8 +95,9 @@ img {width: 100%; vertical-align: middle}
 div {font-size: 1rem}
 
 main, footer {align-self: flex-end}
-sub {font-size: 0.7rem}
+.pp-link span {font-size: 0.8rem; line-height: 1; display: block;}
 .pink-logo {width: 4rem}
+.mailing-list {-webkit-box-pack: end;justify-content: flex-end}
 
 
 form {
