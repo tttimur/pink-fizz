@@ -34249,15 +34249,15 @@ function () {
       this.pinsFormation.push(this.pins);
       this.materials = [];
       this.selectedMaterial = 1;
-      this.materials[0] = new THREE.MeshNormalMaterial({
+      this.materials[1] = new THREE.MeshNormalMaterial({
         side: THREE.BackSide
       });
-      this.materials[1] = new THREE.MeshStandardMaterial({
+      this.materials[0] = new THREE.MeshStandardMaterial({
         color: 0xf18fca,
         side: THREE.BackSide
       });
       this.clothMaterial = this.materials[1];
-      this.clothMaterial.color.convertSRGBToLinear();
+      this.materials[0].color.convertSRGBToLinear();
       this.clothGeometry = new THREE.ParametricBufferGeometry(_cloth.clothFunction, _cloth.cloth.w, _cloth.cloth.h);
       this.clothMesh = new THREE.Mesh(this.clothGeometry, this.clothMaterial);
       this.clothMesh.position.set(20, 0, 0);
@@ -34471,7 +34471,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63786" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56333" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

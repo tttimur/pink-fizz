@@ -95,14 +95,14 @@ var helper = new THREE.HemisphereLightHelper( light, 5 );
 
     this.materials = []
     this.selectedMaterial = 1
-    this.materials[0] = new THREE.MeshNormalMaterial({ side: THREE.BackSide })
-    this.materials[1] = new THREE.MeshStandardMaterial({
+    this.materials[1] = new THREE.MeshNormalMaterial({ side: THREE.BackSide })
+    this.materials[0] = new THREE.MeshStandardMaterial({
       color: 0xf18fca,
       side: THREE.BackSide
     })
     
     this.clothMaterial = this.materials[1]
-    this.clothMaterial.color.convertSRGBToLinear()
+    this.materials[0].color.convertSRGBToLinear()
 
     this.clothGeometry = new THREE.ParametricBufferGeometry(clothFunction, cloth.w, cloth.h)
 
