@@ -174,7 +174,7 @@
 .fn{float:none}
 .cf:after{content:"";display:block;clear:both}
 .oh{overflow:hidden}
-.os{overflow:scroll}
+.os{overflow:scroll; -webkit-overflow-scrolling: touch}
 .ov{overflow:visible}
 .oxh{overflow-x:hidden}
 .oxs{overflow-x:scroll}

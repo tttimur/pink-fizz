@@ -53,7 +53,14 @@ body {
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.02em;
-  min-height: 100vh
+}
+
+.mailing-list-desc{max-width: 15rem}
+
+article {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -64,6 +71,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 main {
+
 }
 
 canvas {
@@ -170,6 +178,25 @@ form {margin-bottom: 0}
 }
 .copy-email.copied span {opacity: 1; color: #fff}
 
+input {
+ --webkit-appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0;
+}
+
+@media (max-width: 1000px) {
+  .mailing-list-desc {max-width: unset} 
+}
+
+@media (max-width: 600px) {
+  .mailing-list {flex-wrap: wrap}
+  section form.x.xac {
+    width: 100%;
+  }
+  .mailing-list-desc{width: 100%; margin-bottom: 1rem; max-width: auto}
+}
 
 
 /*# sourceMappingURL=/pink-fizz.9ad09f98.css.map */

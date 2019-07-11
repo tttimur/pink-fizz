@@ -25,7 +25,6 @@ class Moon {
     this.setupLight()
     this.setupCloth()
     this.setupEventListeners()
-
   }
 
 
@@ -35,12 +34,11 @@ class Moon {
       antialias: false,
       preserveDrawingBuffer: false,
       alpha: false,
-      powerPreference: 'low-power',
       failIfMajorPerformanceCaveat: true
     })
     //    this.renderer.setPixelRatio(window.devicePixelRatio / 3)
     const minPixelRatio = 1.75
-    const pixelRatio = Math.min(minPixelRatio, window.devicePixelRatio)
+    const pixelRatio = Math.min(minPixelRatio, window.devicePixelRatio / 2)
 
     this.renderer.setPixelRatio(pixelRatio)
     this.renderer.setSize(window.innerWidth, window.innerHeight)
@@ -247,7 +245,7 @@ function setupEmailCopy (el) {
   label.style.pointerEvents = 'none'
   label.innerText = 'Copied'
 
-  input.className = 'cccopy-email psa t0 '
+  input.className = 'cccopy-email psa t0 oh '
   input.style.left = '-99999px'
 
   el.style.position = 'relative'

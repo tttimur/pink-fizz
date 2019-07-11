@@ -34196,12 +34196,11 @@ function () {
         antialias: false,
         preserveDrawingBuffer: false,
         alpha: false,
-        powerPreference: 'low-power',
         failIfMajorPerformanceCaveat: true
       }); //    this.renderer.setPixelRatio(window.devicePixelRatio / 3)
 
       var minPixelRatio = 1.75;
-      var pixelRatio = Math.min(minPixelRatio, window.devicePixelRatio);
+      var pixelRatio = Math.min(minPixelRatio, window.devicePixelRatio / 2);
       this.renderer.setPixelRatio(pixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       container.appendChild(this.renderer.domElement);
@@ -34409,7 +34408,7 @@ function setupEmailCopy(el) {
   label.style.width = '1000px';
   label.style.pointerEvents = 'none';
   label.innerText = 'Copied';
-  input.className = 'cccopy-email psa t0 ';
+  input.className = 'cccopy-email psa t0 oh ';
   input.style.left = '-99999px';
   el.style.position = 'relative';
   el.appendChild(input);
@@ -34471,7 +34470,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56333" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51834" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
